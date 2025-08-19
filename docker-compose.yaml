@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  db:
+    image: ankane/pgvector
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: rag_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    platform: linux/arm64 # Ajuste para linux/amd64 se necessário
+
+  # ollama:
+  #   image: ollama/ollama
+  #   restart: always
+  #   container_name: ollama
+  #   ports:
+  #     - "11434:11434"
+  #   volumes:
+  #     - ollama:/root/.ollama  # Isso está certo, ele usará um volume gerenciado pelo Docker.
+  #   platform: linux/arm64
+
+  # ollama:
+  #   image: ollama/ollama
+  #   restart: always
+  #   container_name: ollama
+  #   ports:
+  #     - "11434:11434"
+  #   volumes:
+  #     - ollama:/root/.ollama
+  #   platform: linux/arm64 # Ajuste para linux/amd64 se necessário
+
+volumes:
+  pgdata:
+  ollama:
